@@ -1534,7 +1534,10 @@
 			"icon_state" = "phazon24"
 		),
 	)
+	var/core //You could also transfer the actual item, but that would require even more changes.
 
+/datum/component/construction/mecha/phazon/modify_result(atom/result)
+	new core(result)
 
 /datum/component/construction/mecha/phazon/custom_action(obj/item/I, mob/living/user, diff)
 	if(!..())
@@ -1668,6 +1671,7 @@
 			if(diff==FORWARD)
 				user.visible_message("[user] carefully inserts the anomaly core into [parent] and secures it.",
 					"<span class='notice'>You slowly place the anomaly core into its socket and close its chamber.</span>")
+			core = I.type
 	return TRUE
 
 //ODYSSEUS

@@ -2,6 +2,16 @@
 ////////  Mecha wreckage   ////////
 ///////////////////////////////////
 
+/obj/mecha/proc/spawnWreckage()
+	var/obj/structure/mecha_wreckage/WR = new wreckage(loc, AI)
+	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+		if(E.salvageable && prob(30))
+			WR.crowbar_salvage += E
+			E.detach(WR) //detaches from src into WR
+		else
+			E.detach(loc)
+			qdel(E)
+	return WR
 
 /obj/structure/mecha_wreckage
 	name = "exosuit wreckage"

@@ -1,3 +1,11 @@
+/obj/mecha/combat/phazon/spawnWreckage()
+	. = ..()
+	var/obj/structure/mecha_wreckage/WR = .
+	var/atom/core = locate(/obj/item/assembly/signaler/anomaly) in contents
+	if(core)
+		core.forceMove(WR)
+		WR.crowbar_salvage += core
+
 /obj/mecha/combat/phazon
 	desc = "This is a Phazon exosuit. The pinnacle of scientific research and pride of Nanotrasen, it uses cutting edge bluespace technology and expensive materials."
 	name = "\improper Phazon"

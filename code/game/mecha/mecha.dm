@@ -176,15 +176,7 @@
 		else
 			M.forceMove(loc)
 	if(wreckage)
-		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, AI)
-		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
-			if(E.salvageable && prob(30))
-				WR.crowbar_salvage += E
-				E.detach(WR) //detaches from src into WR
-				E.equip_ready = 1
-			else
-				E.detach(loc)
-				qdel(E)
+		spawnWreckage() //proc located in mecha_wreckage, comment optional, your choice really where you put this.
 		if(cell)
 			WR.crowbar_salvage += cell
 			cell.forceMove(WR)

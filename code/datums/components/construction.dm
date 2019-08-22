@@ -110,12 +110,16 @@
 /datum/component/construction/proc/spawn_result()
 	// Some constructions result in new components being added.
 	if(ispath(result, /datum/component))
-		parent.AddComponent(result)
+		modify_result(parent.AddComponent(result))
 		qdel(src)
 
 	else if(ispath(result, /atom))
-		new result(drop_location())
+		modify_result(new result(drop_location())
 		qdel(parent)
+
+///Called from spawn_result(). Used in subtypes to modify the result.
+/datum/component/construction/proc/modify_result(datum/result)
+	return
 
 /datum/component/construction/proc/update_parent(step_index)
 	var/list/step = steps[step_index]
